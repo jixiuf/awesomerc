@@ -1,0 +1,1 @@
+notify-send   -u low -t 2000 -i "/usr/share/icons/gnome/32x32/status/dialog-information.png" "<span color='#00ffff'>不</span>" 你好
