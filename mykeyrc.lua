@@ -18,29 +18,27 @@ globalkeys = awful.util.table.join(
    awful.key({shiftkey      }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set Master 5%+")  end),
    awful.key({              }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set PCM 5%+")  end),
    awful.key({              }, "XF86AudioLowerVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set PCM 5%-")  end),
+   awful.key({      }, "XF86AudioStop", function ()awful.util.spawn("mocp -s ")  end),
+   awful.key({      }, "XF86AudioPlay", function ()awful.util.spawn("mocp -G ")  end),
+   awful.key({      }, "XF86AudioNext", function ()awful.util.spawn("mocp -f ")  end),
+   awful.key({      }, "XF86AudioPrev", function ()awful.util.spawn("mocp -r ")  end),
    --文本模式下的music 播放器
    awful.key({      }, "F6", function ()
                                 local offcount=awful.util.pread("pgrep -f mocp |wc -l")
                                 if  string.match(offcount, "0") then 
                                    awful.util.spawn_with_shell("mocp -S ")
                                 end
-                                drop_only("urxvt -e mocp " ,true,"center","center",1024,700,false,1)
+                                drop_only("urxvtc -e mocp " ,true,"center","center",1024,700,false,1)
                              end),
    awful.key({      }, "F1", function () drop_only("urxvtc",true ,"center","center",1024,700,false,1) end),
    awful.key({      }, "F3", function () drop_only("sudo  urxvtc",true, "center","center",900,600,false,1) end),
    awful.key({      }, "F12", function () drop_only("urxvtc -e sudo  tail -f /var/log/messages", false, "bottom","center",1280,780,false,1)end),
    awful.key({      }, "Print",function () awful.util.spawn("scrot  -e 'mv $f ~/shots;gpicview ~/shots/$f'") end  ),
-   awful.key({      }, "XF86AudioStop", function ()awful.util.spawn("mocp -s ")  end),
-   awful.key({      }, "XF86AudioPlay", function ()awful.util.spawn("mocp -G ")  end),
-   awful.key({      }, "XF86AudioNext", function ()awful.util.spawn("mocp -f ")  end),
-   awful.key({      }, "XF86AudioPrev", function ()awful.util.spawn("mocp -r ")  end),
    awful.key({modkey,       },"F12",function () awful.util.spawn("xlock") end),--锁屏，
    awful.key({modkey,       }, "t",  function () awful.util.spawn("urxvtc") end),
    awful.key({modkey,       }, "e",  function () awful.util.spawn("pcmanfm") end  ),
    awful.key({modkey,       }, "g",  function () run_or_raise_by_uuid("gimp","gimp") end  ),
-   awful.key({modkey,       }, "a",  function () awful.util.spawn("quodlibet") end  ),
    awful.key({ modkey       }, "f",  function () run_or_raise_by_uuid("firefox") end),
---   awful.key({ modkey       }, "f",  function () run_or_raise_by_uuid("firefox","firefox") end),
    awful.key({modkey,       }, "i",  function () run_or_raise_by_uuid("eclipse","eclipse-j2ee-helios") end  ),
    awful.key({modkey,       }, "m",  function () run_or_raise_by_uuid("myeclipse","myeclipse") end  ),
    awful.key({modkey,       }, "s",  function () run_or_raise_by_uuid("stardict","stardict") end  ),
