@@ -2,7 +2,7 @@
 require("revelation")
 --一键窗口显隐drop_only()
 require("drop_only")
-require("run_or_raise_by_id")
+require("run_or_raise_by_uuid")
 require("text_stardict_rc")
 modkey = "Mod4" 
 altkey = "Mod1" 
