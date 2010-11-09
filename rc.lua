@@ -21,10 +21,11 @@ shifty.config.tags = {
    ["java"] = { exclusive = true,          },
    ["eclipse"] = { exclusive = true,       solitary=true  },
    ["fs"] = { rel_index = 1,                               },
+   ["urxvt"] = { rel_index = 1,       },
 }
 
 shifty.config.apps = {
-   { match = {"urxvt" }, slave=true   ,intrusive=true     },
+   { match = {"urxvt" }, slave=true   ,intrusive=true     ,leave_kills=true},
    { match = { "Pcmanfm"}, tag = "f s " },
    { match = { "OpenOffice.org*"}, tag = "office" },
    { match = { "Firefox"}, tag = "www",instrusive=true },

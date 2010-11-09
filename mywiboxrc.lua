@@ -1,4 +1,4 @@
-require("volumerc")
+require("oss_volumerc")
 require("batteryrc")
 require("mymenurc")
 modkey = "Mod4" 
@@ -6,7 +6,23 @@ altkey = "Mod1"
 ctrlkey="Control"
 shiftkey="Shift"
 --时间
-spacer=widget({type="textbox",value=" ", name="spacer"})
+layouts =
+   {
+       awful.layout.suit.floating,
+       awful.layout.suit.tile,
+       awful.layout.suit.tile.left,
+       awful.layout.suit.tile.bottom,
+       awful.layout.suit.tile.top,
+       awful.layout.suit.fair,
+       awful.layout.suit.fair.horizontal,
+       awful.layout.suit.spiral,
+       awful.layout.suit.spiral.dwindle,
+       awful.layout.suit.max,
+       awful.layout.suit.max.fullscreen,
+       awful.layout.suit.magnifier
+}
+spacer=widget({type="textbox", name="spacer"})
+spacer.text=" "
 mytextclock = awful.widget.textclock({ align = "right" },"<span color='green'>%Y-%m-%d</span> <span   color='yellow'>%H:%M</span>",1)
 --系统托盘
 mysystray = widget({ type = "systray" })
@@ -73,8 +89,8 @@ for s = 1, screen.count() do
          mytaglist[s],
          mypromptbox[s],
          layout = awful.widget.layout.horizontal.leftright
-      },spacer,
-      mylayoutbox[s],spacer,baticon,spacer, volicon,textVolume,spacer, mytextclock,
+      },
+      mylayoutbox[s],baticon,spacer, textVolume,volicon,spacer, mytextclock,
       s == 1 and mysystray or nil,
       mytasklist[s],
       layout = awful.widget.layout.horizontal.rightleft

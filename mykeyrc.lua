@@ -2,7 +2,7 @@
 require("revelation")
 --一键窗口显隐drop_only()
 require("drop_only")
-require("run_or_raise_by_id")
+require("run_or_raise_by_uuid")
 require("text_stardict_rc")
 modkey = "Mod4" 
 altkey = "Mod1" 
@@ -14,10 +14,12 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey }, "d",function () query_word_from_selection() end),
    --将所有窗口平铺到当前tag 然后可以用jkhl 移动焦点，回车后回到所选窗口所在的tag
    awful.key({ modkey }, "w",  revelation.revelation),
-   awful.key({shiftkey      }, "XF86AudioLowerVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set Master 5%-")  end),
-   awful.key({shiftkey      }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set Master 5%+")  end),
-   awful.key({              }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set PCM 5%+")  end),
-   awful.key({              }, "XF86AudioLowerVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set PCM 5%-")  end),
+   awful.key({      }, "XF86AudioLowerVolume", function ()	awful.util.spawn_with_shell("ossmix   codec3.misc.pcm1 -- -2")  end),
+   awful.key({      }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("ossmix   codec3.misc.pcm1 -- +2")  end),
+   -- awful.key({shiftkey      }, "XF86AudioLowerVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set Master 5%-")  end),
+   -- awful.key({shiftkey      }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set Master 5%+")  end),
+   -- awful.key({              }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set PCM 5%+")  end),
+   -- awful.key({              }, "XF86AudioLowerVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set PCM 5%-")  end),
    awful.key({      }, "XF86AudioStop", function ()awful.util.spawn("mocp -s ")  end),
    awful.key({      }, "XF86AudioPlay", function ()awful.util.spawn("mocp -G ")  end),
    awful.key({      }, "XF86AudioNext", function ()awful.util.spawn("mocp -f ")  end),
@@ -42,8 +44,8 @@ globalkeys = awful.util.table.join(
    awful.key({modkey,       }, "i",  function () run_or_raise_by_uuid("eclipse","eclipse-j2ee-helios") end  ),
    awful.key({modkey,       }, "m",  function () run_or_raise_by_uuid("myeclipse","myeclipse") end  ),
    awful.key({modkey,       }, "s",  function () run_or_raise_by_uuid("stardict","stardict") end  ),
-   awful.key({modkey,       }, "v",  function () run_or_raise_by_uuid("VirtualBox","vbox-main") end  ),
-   awful.key({modkey,       }, "x",  function () run_or_raise_by_uuid("VirtualBox  --comment xp --startvm b1d64578-b9a6-49a2-9b19-5916bfdd848f ","vobx-xp" ) end  ),
+   awful.key({modkey,       }, "v",  function () run_or_raise_by_uuid("sudo VirtualBox","vbox-main") end  ),
+   awful.key({modkey,       }, "x",  function () run_or_raise_by_uuid("sudo VirtualBox  --comment xp --startvm b1d64578-b9a6-49a2-9b19-5916bfdd848f ","vobx-xp" ) end  ),
 
    awful.key({ modkey }, "n",   awful.tag.viewnext),
    awful.key({ modkey }, "p",   awful.tag.viewprev),

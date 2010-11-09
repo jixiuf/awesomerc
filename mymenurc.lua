@@ -43,7 +43,7 @@ mymainmenu = awful.menu({ items = {
                              { "  ThunderBird邮件客户端", "thunderbird" ,icondir .. "thunderbird.png"},
                              { "   Timidity++ ", "timidity -ig", icondir .. "timidity.png" },
                              { "  WireShark网络分析 ", "sudo wireshark", icondir ..  "wireshark.png" },
-                             { "  VirtualBox 虚拟机", "VirtualBox", icondir .. "virtualbox.png" },
+                             { "  VirtualBox 虚拟机", "sudo VirtualBox", icondir .. "virtualbox.png" },
                              { "  Awesome", myawesomemenu ,icondir .. "awesome.png"},
                              { "    关  机", "sudo shutdown -h now",  icondir .. "shutdown.png"  },
                              { "    重  启", "sudo shutdown -r now" ,icondir .. "reboot.png" }
