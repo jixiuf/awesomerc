@@ -1,6 +1,5 @@
 --文件列表--将所有窗口平铺到当前tag 然后可以用jkhl 移动焦点，回车后回到所选窗口所在的tag
 require("revelation")
---一键窗口显隐drop_only()
 require("drop_only")
 require("run_or_raise_by_uuid")
 require("text_stardict_rc")
@@ -14,12 +13,12 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey }, "d",function () query_word_from_selection() end),
    --将所有窗口平铺到当前tag 然后可以用jkhl 移动焦点，回车后回到所选窗口所在的tag
    awful.key({ modkey }, "w",  revelation.revelation),
-   awful.key({      }, "XF86AudioLowerVolume", function ()	awful.util.spawn_with_shell("ossmix   codec3.misc.pcm1 -- -2")  end),
-   awful.key({      }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("ossmix   codec3.misc.pcm1 -- +2")  end),
-   -- awful.key({shiftkey      }, "XF86AudioLowerVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set Master 5%-")  end),
-   -- awful.key({shiftkey      }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set Master 5%+")  end),
-   -- awful.key({              }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set PCM 5%+")  end),
-   -- awful.key({              }, "XF86AudioLowerVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set PCM 5%-")  end),
+   -- awful.key({      }, "XF86AudioLowerVolume", function ()	awful.util.spawn_with_shell("ossmix   codec3.misc.pcm1 -- -2")  end),
+   -- awful.key({      }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("ossmix   codec3.misc.pcm1 -- +2")  end),
+   awful.key({shiftkey      }, "XF86AudioLowerVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set Master 5%-")  end),
+   awful.key({shiftkey      }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set Master 5%+")  end),
+   awful.key({              }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set PCM 5%+")  end),
+   awful.key({              }, "XF86AudioLowerVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set PCM 5%-")  end),
    awful.key({      }, "XF86AudioStop", function ()awful.util.spawn("mocp -s ")  end),
    awful.key({      }, "XF86AudioPlay", function ()awful.util.spawn("mocp -G ")  end),
    awful.key({      }, "XF86AudioNext", function ()awful.util.spawn("mocp -f ")  end),
@@ -32,8 +31,8 @@ globalkeys = awful.util.table.join(
                                 end
                                 drop_only("urxvtc -e mocp " ,true,"center","center",1024,700,false,1)
                              end),
-   awful.key({      }, "F1", function () drop_only("urxvtc",true ,"center","center",1024,700,false,1) end),
-   awful.key({      }, "F3", function () drop_only("sudo  urxvtc",true, "center","center",900,600,false,1) end),
+   awful.key({      }, "F3", function () drop_only("urxvtc",true ,"center","center",1024,700,false,1) end),
+   awful.key({      }, "F1", function () drop_only("sudo  urxvtc",true, "center","center",1024,700,false,1) end),
    awful.key({      }, "F12", function () drop_only("urxvtc -e sudo  tail -f /var/log/messages", false, "bottom","center",1280,780,false,1)end),
    awful.key({      }, "Print",function () awful.util.spawn("scrot  -e 'mv $f ~/shots;gpicview ~/shots/$f'") end  ),
    awful.key({modkey,       },"F12",function () awful.util.spawn("xlock") end),--锁屏，
