@@ -20,8 +20,9 @@
 -------------------------------------------------------------------
 -- Parameters:
 --   prog   - Program to run; "urxvt", "gmrun", "thunderbird"
---   vert   - Vertical; "bottom", "center" or "top" (default)
---   horiz  - Horizontal; "left", "right" or "center" (default)
+--   hideOtherClients   whether to hide other dropped client when this client show ,default true
+--   vert   - Vertical; "bottom", "center" or "top" (default),fullscreen
+--   horiz  - Horizontal; "left", "right" or "center" (default),fullscreen
 --   width  - Width in absolute pixels, or width percentage
 --            when <= 1 (1 (100% of the screen) by default)
 --   height - Height in absolute pixels, or height percentage
@@ -37,7 +38,7 @@ local capi = {
    client = client,
    screen = screen
 }
-module("drop_only")
+--module("drop_only")
 
 local dropdown = {}
 local previous_dropped_client
@@ -47,7 +48,8 @@ if previous_dropped_client==nil then
    previous_dropped_client.hidden=false
 end
 
-function toggle(prog,hideOtherClients, vert, horiz, width, height, sticky, screen)
+--function toggle(prog,hideOtherClients, vert, horiz, width, height, sticky, screen)
+function drop_only(prog,hideOtherClients, vert, horiz, width, height, sticky, screen)
    vert   = vert   or "top"
    horiz  = horiz  or "center"
    width  = width  or 1
@@ -97,10 +99,13 @@ function toggle(prog,hideOtherClients, vert, horiz, width, height, sticky, scree
                   else   y =  screengeom.y - screengeom.y end
 
                   -- Client properties
+                  if horiz=="fullscreen" then width=screengeom.width     x=screengeom.x end
+                  if vert== "fullscreen" then height=screengeom.height y=screengeom.y end
+
                   c:geometry({ x = x, y = y, width = width, height = height })
-                  c.ontop = true
+--                  c.ontop = true
                   c.above = true
-                  c.skip_taskbar = true
+--                c.skip_taskbar = true
                   if sticky then c.sticky = true end
                   if c.titlebar then awful.titlebar.remove(c) end
 
@@ -151,11 +156,15 @@ function toggle(prog,hideOtherClients, vert, horiz, width, height, sticky, scree
             previous_dropped_client.hidden=false
          end 
          c.hidden = true
-         local ctags = c:tags()
-         -- for i, t in pairs(ctags) do
-         --    ctags[i] = nil
-         -- end
-         -- c:tags(ctags)
+         local tag_count=table.getn( capi.screen[mouse.screen]:tags())
+         if tag_count >1 then
+            local ctags = c:tags()
+            for i, t in pairs(ctags) do
+               ctags[i] = nil
+            end
+            c:tags(ctags)
+         end
+         
       end
    end
 
@@ -169,5 +178,5 @@ function hideall()
    end
 end
 
-setmetatable(_M, { __call = function(_, ...) return toggle(...) end })
+--setmetatable(_M, { __call = function(_, ...) return toggle(...) end })
 

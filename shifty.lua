@@ -409,7 +409,7 @@ function match(c, startup)
   for i, a in ipairs(config.apps) do
     if a.match then
       for k, w in ipairs(a.match) do
-        if
+         if
           (cls and cls:find(w)) or
           (inst and inst:find(w)) or
           (name and name:find(w)) or

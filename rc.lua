@@ -1,3 +1,4 @@
+require("jixiuf_util")
 require("awful")
 require("awful.autofocus")
 require("awful.rules")
@@ -18,23 +19,28 @@ shiftkey="Shift"
 awful.util.spawn_with_shell("pkill -9 fcitx ; fcitx") 
 shifty.config.tags = {
    ["www"] = { layout =awful.layout.suit.tile,max_clients=1 ,position=1  , solitary = true},
-   ["java"] = { exclusive = true,          },
-   ["eclipse"] = { exclusive = true,       solitary=true  },
-   ["fs"] = { rel_index = 1,                               },
-   ["urxvt"] = { rel_index = 1,       },
+   ["java"] = { exclusive = true,         position=3 },
+   ["eclipse"] = { exclusive = true,    position=3,   solitary=true  },
+   ["mplayer"] = { position=4                               },
+   ["f s "] = { rel_index = 1,                               },
+--   ["emacs"] = { rel_index = 1,       },
+   ["tail"] = {   max_clients=0,persist=true ,init=true,solitary=true,exclusive=true},
 }
 
 shifty.config.apps = {
-   { match = {"urxvt" }, slave=true   ,intrusive=true     ,leave_kills=true},
+--   { match = {"urxvt" }, slave=true },
    { match = { "Pcmanfm"}, tag = "f s " },
+   { match = { "mplayer"}, tag = "mplayer" },
+   -- { match = { "emacs"}, tag = "emacs"  },
+   { match = { "emacs"}, above=true,float=false,geometry={100,100,1000,700},tag="emacs"},
    { match = { "OpenOffice.org*"}, tag = "office" },
    { match = { "Firefox"}, tag = "www",instrusive=true },
    { match = { "Dialog"},  tag = "www",intrusive=true,  float=true,geometry={240,200,nil,nil} ,above=true },
-  { match = { "^下载$" },  tag ="www",above=true, titlebar=true,intrusive=true, geometry={800,200,400,300} ,float=true },
-  { match = { "打开文件"}, tag = "www",intrusive=true,  float=true,geometry={240,200,nil,nil} ,above=true },
-  { match = { "另存为"},   tag = "www",intrusive=true,  float=true,geometry={240,200,nil,nil} ,above=true },
-  { match = { "附加组件"}, tag = "www",intrusive=true,  float=true,geometry={240,200,nil,nil} ,above=true },
---   { match = { "^Firefox.*"}, tag = "www",intrusive=true,  float=true,geometry={240,160,nil,nil} ,above=true },
+   { match = { "^下载$" },  tag ="www",above=true, titlebar=true,intrusive=true, geometry={800,200,400,300} ,float=true },
+   { match = { "打开文件"}, tag = "www",intrusive=true,  float=true,geometry={240,200,nil,nil} ,above=true },
+   { match = { "另存为"},   tag = "www",intrusive=true,  float=true,geometry={240,200,nil,nil} ,above=true },
+   { match = { "附加组件"}, tag = "www",intrusive=true,  float=true,geometry={240,200,nil,nil} ,above=true },
+   --   { match = { "^Firefox.*"}, tag = "www",intrusive=true,  float=true,geometry={240,160,nil,nil} ,above=true },
    
    { match = {"Gimp",}, tag = "gimp" },
    { match = {"gimp%-image%-window" }, slave = true},
@@ -53,14 +59,19 @@ shifty.config.apps = {
 }
 awful.rules.rules = {
    { rule = { },    properties = {  size_hints_honor = false} }
- }
+}
 shifty.config.defaults = {
    layout = awful.layout.suit.tile,
    ncol = 1, 
    mwfact = 0.50,
-   floatBars=true,
+   --   floatBars=true,
    guess_name=true,
    guess_position=false,
+   run = function(tag) 
+            if tag.name ~="tail" then --当有新tag创建的时候，始终将tail标签移动到所有tag的末尾
+               moveTag2Last("tail") --
+            end 
+         end 
 }
 shifty.taglist = mytaglist
 shifty.init()
@@ -82,7 +93,7 @@ client.add_signal("manage", function (c, startup)
                                                                   taskMenuInstance:hide()--关闭任务栏列表，如果存在的话
                                                                   taskMenuInstance = nil
                                                                end
---                                                               鼠标进入，聚焦
+                                                               --                                                               鼠标进入，聚焦
                                                                if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
                                                                and awful.client.focus.filter(c) then
                                                                client.focus = c

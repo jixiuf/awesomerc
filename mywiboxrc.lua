@@ -26,7 +26,7 @@ spacer=widget({type="textbox", name="spacer"})
 spacer.text=" "
 mytextclock = awful.widget.textclock({ align = "right" },"<span color='green'>%Y-%m-%d</span> <span   color='yellow'>%H:%M</span>",1)
 cpuwidget = widget({ type = "textbox" })
-vicious.register(cpuwidget, vicious.widgets.cpu, "<span color='green' >cpu:$1</span>")
+vicious.register(cpuwidget, vicious.widgets.cpu, "<span color='blue' >$1</span>")
 
 --系统托盘
 mysystray = widget({ type = "systray" })
@@ -94,7 +94,7 @@ for s = 1, screen.count() do
          mypromptbox[s],
          layout = awful.widget.layout.horizontal.leftright
       },
-      mylayoutbox[s],cpuwidget,spacer,baticon,spacer, textVolume,volicon,spacer, mytextclock,
+      mylayoutbox[s],baticon,spacer, textVolume,volicon,spacer, mytextclock,cpuwidget,
       s == 1 and mysystray or nil,
       mytasklist[s],
       layout = awful.widget.layout.horizontal.rightleft
