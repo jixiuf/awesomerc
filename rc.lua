@@ -18,19 +18,20 @@ ctrlkey="Control"
 shiftkey="Shift"
 awful.util.spawn_with_shell("pkill -9 fcitx ; fcitx") 
 shifty.config.tags = {
-   ["www"] = { layout =awful.layout.suit.tile,max_clients=1 ,position=1  , solitary = true},
+   ["www"] = { layout =awful.layout.suit.tile,position=1 },
    ["java"] = { exclusive = true,         position=3 },
    ["eclipse"] = { exclusive = true,    position=3,   solitary=true  },
-   ["mplayer"] = { position=4                               },
+   ["mplayer"] = { position=4                 ,float=true              },
    ["f s "] = { rel_index = 1,                               },
+   ["urxvtt"] = { rel_index = 1,       },
 --   ["emacs"] = { rel_index = 1,       },
    ["tail"] = {   max_clients=0,persist=true ,init=true,solitary=true,exclusive=true},
 }
 
 shifty.config.apps = {
---   { match = {"urxvt" }, slave=true },
+   { match = {"toggled_urxvt" },tag="urxvtt", slave=true },
    { match = { "Pcmanfm"}, tag = "f s " },
-   { match = { "mplayer"}, tag = "mplayer" },
+   { match = { "MPlayer"}, tag = "mplayer" },
    -- { match = { "emacs"}, tag = "emacs"  },
    { match = { "emacs"}, above=true,float=false,geometry={100,100,1000,700},tag="emacs"},
    { match = { "OpenOffice.org*"}, tag = "office" },
@@ -65,7 +66,7 @@ shifty.config.defaults = {
    ncol = 1, 
    mwfact = 0.50,
    --   floatBars=true,
-   guess_name=true,
+   guess_name=false,
    guess_position=false,
    run = function(tag) 
             if tag.name ~="tail" then --当有新tag创建的时候，始终将tail标签移动到所有tag的末尾
@@ -105,8 +106,9 @@ client.add_signal("unfocus", function(c) c.border_color = beautiful.border_norma
 -- }}}
 
 
--- function debug_(var)
---    naughty.notify({ text = var, timeout = 5 })
--- end
+function debug_(var)
+   naughty.notify({ text = "" .. var, timeout = 5 })
+   awful.util.spawn_with_shell("logger " .. var)
+end
 -- d="ddddd"
 -- debug_(d)
