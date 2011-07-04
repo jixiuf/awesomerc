@@ -24,11 +24,12 @@ shifty.config.tags = {
    ["mplayer"] = { position=4                 ,float=true              },
    ["f s "] = { rel_index = 1,                               },
    ["urxvtt"] = { rel_index = 1,       },
---   ["emacs"] = { rel_index = 1,       },
+   ["emacs"] = { rel_index = 1     },
    ["tail"] = {   max_clients=0,persist=true ,init=true,solitary=true,exclusive=true},
 }
 
 shifty.config.apps = {
+   { match = {"Drcomclient" }, slave=true ,float=true, above=true,geometry={500,100,300,200}},
    { match = {"toggled_urxvt" },tag="urxvtt", slave=true },
    { match = { "Pcmanfm"}, tag = "f s " },
    { match = { "MPlayer"}, tag = "mplayer" },
@@ -62,9 +63,10 @@ awful.rules.rules = {
    { rule = { },    properties = {  size_hints_honor = false} }
 }
 shifty.config.defaults = {
-   layout = awful.layout.suit.tile,
+       
+   layout= awful.layout.suit.tile.left,
    ncol = 1, 
-   mwfact = 0.50,
+   mwfact = 0.60,
    --   floatBars=true,
    guess_name=false,
    guess_position=false,
@@ -94,7 +96,7 @@ client.add_signal("manage", function (c, startup)
                                                                   taskMenuInstance:hide()--关闭任务栏列表，如果存在的话
                                                                   taskMenuInstance = nil
                                                                end
-                                                               --                                                               鼠标进入，聚焦
+                                                               --     鼠标进入，聚焦
                                                                if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier
                                                                and awful.client.focus.filter(c) then
                                                                client.focus = c
@@ -112,3 +114,4 @@ function debug_(var)
 end
 -- d="ddddd"
 -- debug_(d)
+--

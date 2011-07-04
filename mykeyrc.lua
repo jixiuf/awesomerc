@@ -4,12 +4,17 @@ require("toggle_client_in_a_tag")
 require("revelation")
 require("drop_only")
 require("run_or_raise_by_uuid")
+require("aweror")
 modkey = "Mod4" 
 altkey = "Mod1" 
 ctrlkey="Control"
 shiftkey="Shift"
-globalkeys = awful.util.table.join( 
-   awful.key({  }, "F1", function () toggle_tag_with_shifty("emacsclient -c -n " ,"emacs",{class="Emacs" ,instance="emacs"}) end),
+globalkeys = awful.util.table.join(
+   awful.key({  modkey}, "i", function () awful.util.spawn_with_shell("sudo modprobe -r drcom; sudo modprobe drcom;sudo pkill drcomclient; sudo drcomclient") end),
+   --awful.key({  modkey}, "i", function () run_or_raise("sudo drcomclient", { class="Drcomclient", instance="drcomclient" }) end),
+   awful.key({  modkey}, "a", function () toggle_tag_with_shifty("emacsclient -c " ,"emacs",{class="Emacs" ,instance="emacs"}) end),
+   awful.key({  modkey}, "q", function () show_matched_client({class="Emacs" ,instance="emacs"},"emacs"," emacsclient -c " ,nil) end),
+   
    awful.key({ modkey            }, "c",function () toggle_conky() end),
       --stardict 文本模式,要用到xsel sdcv
    awful.key({ modkey }, "z", function () mywibox[mouse.screen].visible = not mywibox[mouse.screen].visible end),
@@ -28,20 +33,21 @@ globalkeys = awful.util.table.join(
    awful.key({  }, "F3", function () toggle_tag_with_shifty("urxvtc -name toggled_urxvt" ,"urxvtt",{class="URxvt" ,instance="toggled_urxvt"}) end),
    awful.key({modkey}, "F3", function () awful.util.spawn("urxvtc -name toggled_urxvt" ) end),
 --   awful.key({      }, "F3", function () drop_only("urxvtc -name f3",true ,"center","center",1024,700,false,1) end),
-   awful.key({  }, "F4", function () toggle_tag_with_shifty("sudo urxvtc -name toggled_urxvt_root" ,"urxvtt",{class="URxvt" ,instance="toggled_urxvt_root"}) end),
-   awful.key({modkey}, "F4", function () awful.util.spawn("sudo urxvtc -name toggled_urxvt_root" ) end),
+   awful.key({ modkey }, "F4", function () toggle_tag_with_shifty("sudo urxvtc -name toggled_urxvt_root" ,"urxvtt",{class="URxvt" ,instance="toggled_urxvt_root"}) end),
+---   awful.key({modkey}, "F4", function () awful.util.spawn("sudo urxvtc -name toggled_urxvt_root" ) end),
    awful.key({      }, "F12", function () drop_only("urxvtc -e sudo  tail -f /var/log/messages", false, "bottom","center",1280,780,false,1)end),
    awful.key({      }, "Print",function () awful.util.spawn("scrot  -e 'mv $f ~/shots;gpicview ~/shots/$f'") end  ),
    awful.key({modkey,       },"F12",function () awful.util.spawn("xlock") end),--锁屏，
    awful.key({modkey,       }, "t",  function () awful.util.spawn("urxvtc") end),
    awful.key({modkey,       }, "e",  function () awful.util.spawn("pcmanfm") end  ),
    awful.key({modkey,       }, "g",  function () run_or_raise_by_uuid("gimp","gimp") end  ),
-   awful.key({ modkey       }, "f",  function () run_or_raise_by_uuid("firefox") end),
+   awful.key({modkey        }, "f", function () toggle_tag_with_shifty("firefox" ,"www",{class="Firefox" ,instance="Navigator"}) end),   
+--   awful.key({ modkey       }, "f",  function () run_or_raise_by_uuid("firefox") end),
    awful.key({modkey,       }, "i",  function () run_or_raise_by_uuid("eclipse","eclipse-j2ee-helios") end  ),
    awful.key({modkey,       }, "m",  function () run_or_raise_by_uuid("myeclipse","myeclipse") end  ),
    awful.key({modkey,shiftkey}, "s",  function () run_or_raise_by_uuid("stardict","stardict") end  ),
-   awful.key({modkey,       }, "v",  function () run_or_raise_by_uuid("sudo VirtualBox","vbox-main") end  ),
-   awful.key({modkey,       }, "x",  function () run_or_raise_by_uuid("sudo VirtualBox  --comment xp --startvm b1d64578-b9a6-49a2-9b19-5916bfdd848f ","vobx-xp" ) end  ),
+   awful.key({modkey,       }, "v",  function () run_or_raise_by_uuid("VirtualBox","vbox-main") end  ),
+   awful.key({modkey,       }, "x",  function () run_or_raise_by_uuid("VirtualBox --comment x --startvm 047b7e2f-c916-4a34-aac8-4c9ed7f50515 --no-startvm-errormsgbox","vobx-xp" ) end  ),
 
    awful.key({ modkey }, "n",   awful.tag.viewnext),
    awful.key({ modkey }, "p",   awful.tag.viewprev),
@@ -70,10 +76,10 @@ globalkeys = awful.util.table.join(
       -- awful.key({      }, "XF86AudioLowerVolume", function ()	awful.util.spawn_with_shell("ossmix   codec3.misc.pcm1 -- -2")  end),
    -- awful.key({      }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("ossmix   codec3.misc.pcm1 -- +2")  end),
 
-   awful.key({shiftkey      }, "XF86AudioLowerVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set Master 5%-")  end),
-   awful.key({shiftkey      }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set Master 5%+")  end),
-   awful.key({              }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set PCM 5%+")  end),
-   awful.key({              }, "XF86AudioLowerVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set PCM 5%-")  end),
+   awful.key({shiftkey      }, "XF86AudioLowerVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set PCM 5%-")  end),
+   awful.key({shiftkey      }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set PCM 5%+")  end),
+   awful.key({              }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set Master 5%+")  end),
+   awful.key({              }, "XF86AudioLowerVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set Master 5%-")  end),
    awful.key({      }, "XF86AudioStop", function ()awful.util.spawn("mocp -s ")  end),
    awful.key({      }, "XF86AudioPlay", function ()awful.util.spawn("mocp -G ")  end),
    awful.key({      }, "XF86AudioNext", function ()awful.util.spawn("mocp -f ")  end),
@@ -90,12 +96,12 @@ globalkeys = awful.util.table.join(
 
 
 clientkeys = awful.util.table.join(
-   awful.key({ modkey,        }, "l",     function (c)
+   awful.key({ modkey,        }, "h",     function (c)
                                              if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier then 
                                                 awful.client.incwfact(-0.1) 
                                              end 
                                              awful.tag.incmwfact( 0.05)   end),
-   awful.key({ modkey,        }, "h",     function (c) 
+   awful.key({ modkey,        }, "l",     function (c) 
                                              if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier then 
                                                 awful.client.incwfact(0.1)
                                              end 
