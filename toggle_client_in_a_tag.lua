@@ -42,11 +42,11 @@ function find_matched_clients(props4match)
    for i, c in ipairs(clients) do
       local match_count=0
       local props_count=0
-      if props4match.class      then props_count=props_count+1 if c.class ==props4match.class        then  match_count=match_count+1   end end
-      if props4match.instance   then props_count=props_count+1 if c.instance ==props4match.instance  then  match_count=match_count+1   end end
-      if props4match.name       then props_count=props_count+1 if c.name ==props4match.name          then  match_count=match_count+1   end end
-      if props4match.type       then props_count=props_count+1 if c.type ==props4match.type          then  match_count=match_count+1   end end
-      if props4match.role       then props_count=props_count+1 if c.role ==props4match.role          then  match_count=match_count+1   end end
+      if props4match.class    then props_count=props_count+1 if c.class ==props4match.class       then match_count=match_count+1 end end
+      if props4match.instance then props_count=props_count+1 if c.instance ==props4match.instance then match_count=match_count+1 end end
+      if props4match.name     then props_count=props_count+1 if c.name ==props4match.name         then match_count=match_count+1 end end
+      if props4match.type     then props_count=props_count+1 if c.type ==props4match.type         then match_count=match_count+1 end end
+      if props4match.role     then props_count=props_count+1 if c.role ==props4match.role         then match_count=match_count+1 end end
       if match_count>0 and match_count== props_count then 
          table.insert(matched_clients ,c)
       end
@@ -76,7 +76,7 @@ function find_unmatched_clients_in_tag(tag ,props4match)
    return other_clients_in_tag
 end
 
-
+--  show_matched_client({class="Emacs" ,instance="emacs"},"emacs","/usr/bin/emacsclient -c " ,nil)
 --show all clients match props4match, in prog_tag_name
 --(if prog_tag_name= nil then current tag,if prog_tag_name doesn't exist ,create new one),
 --if don't exists matched client then it will try to 
@@ -173,3 +173,26 @@ function hide_client( prog_tag,props4match)
    end
 end
 
+function hide_matched_clients(props4match)
+   local matched_clients=find_matched_clients(props4match)
+   for j,matched_c in ipairs(matched_clients ) do
+      matched_c.hidden=true
+   end
+end
+
+function hide_emacs()
+--   hide_client("emacs" , {class="Emacs" ,instance="emacs"})
+   local matched_clients=find_matched_clients({class="Emacs" ,instance="emacs"})
+      for j,matched_c in ipairs(matched_clients ) do
+         local ctags = matched_c:tags()
+         for l, t in pairs(ctags) do
+            ctags[l] = nil
+         end
+         matched_c:tags(ctags)
+         matched_c.hidden=true
+      end
+end
+
+function show_emacs()
+  show_matched_client({class="Emacs" ,instance="emacs"},"emacs","/usr/bin/emacsclient -c " ,nil)
+end
