@@ -103,9 +103,9 @@ function drop_only(prog,hideOtherClients, vert, horiz, width, height, sticky, sc
                   if vert== "fullscreen" then height=screengeom.height y=screengeom.y end
 
                   c:geometry({ x = x, y = y, width = width, height = height })
---                  c.ontop = true
+                  c.ontop = true
                   c.above = true
---                c.skip_taskbar = true
+                  c.skip_taskbar = true
                   if sticky then c.sticky = true end
                   if c.titlebar then awful.titlebar.remove(c) end
 
