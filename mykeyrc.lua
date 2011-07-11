@@ -53,25 +53,25 @@ globalkeys = awful.util.table.join(
 
    awful.key({ modkey }, "n",   awful.tag.viewnext),
    awful.key({ modkey }, "p",   awful.tag.viewprev),
-   awful.key({ altkey,ctrlkey    }, "Left",  awful.tag.viewprev),
-   awful.key({ altkey,ctrlkey    }, "Right", awful.tag.viewnext),
+   awful.key({ ctrlkey,altkey    }, "Left",  awful.tag.viewprev),
+   awful.key({ ctrlkey,altkey    }, "Right", awful.tag.viewnext),
    awful.key({ modkey }, "Tab", awful.tag.history.restore),
    awful.key({ modkey }, "grave", awful.tag.viewnext), --win+~
 
    --将每一个窗口与它的下一个窗口交换，同时把焦点放到主窗口上，也就是循环把窗口送到主窗口上
-   awful.key({ altkey,        }, "Tab",   function (c) awful.client.cycle(false,mouse.screen) client.focus=awful.client.getmaster() end),
+   awful.key({ ctrlkey,        }, "Tab",   function (c) awful.client.cycle(false,mouse.screen) client.focus=awful.client.getmaster() end),
    --焦点切换
    awful.key({ modkey,        }, "j",     function () awful.client.focus.byidx( 1) if client.focus then client.focus:raise() end end),
    awful.key({ modkey,        }, "k",     function () awful.client.focus.byidx(-1) if client.focus then client.focus:raise() end end),
-   awful.key({modkey,ctrlkey}, "j",     function () awful.client.swap.byidx(  1)    end),--对调焦点窗口与下一个窗口
-   awful.key({modkey,ctrlkey}, "k",     function () awful.client.swap.byidx( -1)    end),
+   awful.key({modkey,altkey}, "j",     function () awful.client.swap.byidx(  1)    end),--对调焦点窗口与下一个窗口
+   awful.key({modkey,altkey}, "k",     function () awful.client.swap.byidx( -1)    end),
    awful.key({ modkey,        }, "u",     awful.client.urgent.jumpto),
    -- Standard program
-   awful.key({modkey,ctrlkey}, "r",     awesome.restart),
-   awful.key({modkey,ctrlkey}, "q",     awesome.quit),
+   awful.key({modkey,altkey}, "r",     awesome.restart),
+   awful.key({modkey,altkey}, "q",     awesome.quit),
    --多增加一列
-   --awful.key({ modkey, ctrlkey }, "h",     function () awful.tag.incncol( 1)         end),
-   --awful.key({ modkey, ctrlkey }, "l",     function () awful.tag.incncol(-1)         end),
+   --awful.key({ modkey, altkey }, "h",     function () awful.tag.incncol( 1)         end),
+   --awful.key({ modkey, altkey }, "l",     function () awful.tag.incncol(-1)         end),
    awful.key({ modkey,        }, "space", function () awful.layout.inc(layouts,  1) end),
    awful.key({ modkey,shiftkey }, "space", function () awful.layout.inc(layouts, -1) end),
    awful.key({ modkey         }, "r",     function () mypromptbox[mouse.screen]:run() end),
@@ -109,8 +109,8 @@ clientkeys = awful.util.table.join(
                                              end 
                                              awful.tag.incmwfact( -0.05)   end),
  --send the client to next/previous tag
-   awful.key({ modkey,ctrlkey    }, "Left",  function (c)  send2prev_tag(c) end),
-   awful.key({ modkey,ctrlkey    }, "Right", function (c)  send2next_tag(c)  end),
+   awful.key({ modkey,altkey    }, "Left",  function (c)  send2prev_tag(c) end),
+   awful.key({ modkey,altkey    }, "Right", function (c)  send2next_tag(c)  end),
 --send the client to previous/next tag ,and view that tag
    awful.key({ modkey,shiftkey   }, "Left",  function (c)  send2prev_tag(c) awful.tag:viewprev(mouse.screen) end),
    awful.key({ modkey,shiftkey   }, "Right", function (c)  send2next_tag(c) awful.tag:viewnext(mouse.screen)  end),
@@ -122,7 +122,7 @@ clientkeys = awful.util.table.join(
    -- awful.key({ modkey		     }, "Left",  function (c) awful.client.moveresize(-20,   0,   0,   0) end),
    -- awful.key({ modkey 		     }, "Right", function (c) awful.client.moveresize( 20,   0,   0,   0) end),
    awful.key({ modkey,          },  "Escape",    function (c) c:kill()                         end),
-   awful.key({ modkey, ctrlkey}, "space",  awful.client.floating.toggle                     ),
+   awful.key({ modkey, altkey}, "space",  awful.client.floating.toggle                     ),
    awful.key({ modkey,          }, "Return", function (c) 
                                                 local master=awful.client.getmaster()
                                                 if    master ~=c    then
@@ -149,12 +149,12 @@ for i=1,9 do
                                                                end
                                                                end
                                                             end))
-   globalkeys = awful.util.table.join(globalkeys, awful.key({ modkey, ctrlkey }, i,
+   globalkeys = awful.util.table.join(globalkeys, awful.key({ modkey, altkey }, i,
                                                             function ()
                                                                local t = shifty.getpos(i)
                                                                t.selected = not t.selected
                                                             end))
-   globalkeys = awful.util.table.join(globalkeys, awful.key({ modkey, ctrlkey, shiftkey }, i,
+   globalkeys = awful.util.table.join(globalkeys, awful.key({ modkey, altkey, shiftkey }, i,
                                                             function ()
                                                                if client.focus then
                                                                   awful.client.toggletag(shifty.getpos(i))
