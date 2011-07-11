@@ -107,7 +107,7 @@ function show_matched_client( props4match,prog_tag_name,prog,run)
             awful.tag.viewonly(prog_tag)
          end
          c.hidden=false
-         c.above = true
+--         c.above = true
          c:raise()
          client.focus = c 
       end
