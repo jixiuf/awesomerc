@@ -22,7 +22,7 @@ shifty.config.tags = {
    ["java"] = { exclusive = true,         position=3 },
    ["eclipse"] = { exclusive = true,    position=3,   solitary=true  },
    ["mplayer"] = { position=4                 ,float=true              },
-   ["f s "] = { rel_index = 1,                               },
+   ["f  s"] = { rel_index = 1,                               },
    ["urxvtt"] = { rel_index = 1,       },
    ["emacs"] = { rel_index = 1     },
    ["tail"] = {   max_clients=0,persist=true ,init=true,solitary=true,exclusive=true},
@@ -31,7 +31,7 @@ shifty.config.tags = {
 shifty.config.apps = {
    { match = {"Drcomclient" }, slave=true ,float=true, above=true,geometry={500,100,300,200}},
    { match = {"toggled_urxvt" },tag="urxvtt", slave=true },
-   { match = { "Pcmanfm"}, tag = "f s " },
+   { match = { "Pcmanfm"}, tag = "f  s" },
    { match = { "MPlayer"}, tag = "mplayer" },
    -- { match = { "emacs"}, tag = "emacs"  },
    { match = { "emacs"}, above=true,float=false,geometry={100,100,1000,700},tag="emacs"},
