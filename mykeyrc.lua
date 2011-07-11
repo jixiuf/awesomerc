@@ -30,16 +30,18 @@ globalkeys = awful.util.table.join(
                                 end
                                 drop_only("urxvtc -e mocp " ,true,"center","center",1024,700,false,1)
                              end),
-   awful.key({  }, "F3", function () toggle_tag_with_shifty("urxvtc -name toggled_urxvt" ,"urxvtt",{class="URxvt" ,instance="toggled_urxvt"}) end),
-   awful.key({modkey}, "F3", function () awful.util.spawn("urxvtc -name toggled_urxvt" ) end),
---   awful.key({      }, "F3", function () drop_only("urxvtc -name f3",true ,"center","center",1024,700,false,1) end),
+   awful.key({ modkey }, "F3", function () toggle_tag_with_shifty("urxvtc -name toggled_urxvt" ,"urxvtt",{class="URxvt"}) end),
+--   awful.key({modkey}, "F3", function () awful.util.spawn("urxvtc -name toggled_urxvt" ) end),
+   awful.key({      }, "F3", function () drop_only("urxvtc -name f3",true ,"center","center",900,600,false,1) end),
+   awful.key({      }, "F1", function () drop_only("sudo urxvtc -name f1_root",true ,"center","center",900,600,false,1) end),
    awful.key({ modkey }, "F4", function () toggle_tag_with_shifty("sudo urxvtc -name toggled_urxvt_root" ,"urxvtt",{class="URxvt" ,instance="toggled_urxvt_root"}) end),
 ---   awful.key({modkey}, "F4", function () awful.util.spawn("sudo urxvtc -name toggled_urxvt_root" ) end),
    awful.key({      }, "F12", function () drop_only("urxvtc -e sudo  tail -f /var/log/messages", false, "bottom","center",1280,780,false,1)end),
    awful.key({      }, "Print",function () awful.util.spawn("scrot  -e 'mv $f ~/shots;gpicview ~/shots/$f'") end  ),
    awful.key({modkey,       },"F12",function () awful.util.spawn("xlock") end),--锁屏，
    awful.key({modkey,       }, "t",  function () awful.util.spawn("urxvtc") end),
-   awful.key({modkey,       }, "e",  function () awful.util.spawn("pcmanfm") end  ),
+--   awful.key({modkey,       }, "e",  function () awful.util.spawn("pcmanfm") end  ),
+   awful.key({ modkey       }, "e", function () toggle_tag_with_shifty("pcmanfm" ,"f  s",{class="Pcmanfm"}) end),
    awful.key({modkey,       }, "g",  function () run_or_raise_by_uuid("gimp","gimp") end  ),
    awful.key({modkey        }, "f", function () toggle_tag_with_shifty("firefox" ,"www",{class="Firefox" ,instance="Navigator"}) end),   
 --   awful.key({ modkey       }, "f",  function () run_or_raise_by_uuid("firefox") end),
@@ -47,7 +49,7 @@ globalkeys = awful.util.table.join(
    awful.key({modkey,       }, "m",  function () run_or_raise_by_uuid("myeclipse","myeclipse") end  ),
    awful.key({modkey,shiftkey}, "s",  function () run_or_raise_by_uuid("stardict","stardict") end  ),
    awful.key({modkey,       }, "v",  function () run_or_raise_by_uuid("VirtualBox","vbox-main") end  ),
-   awful.key({modkey,       }, "x",  function () run_or_raise_by_uuid("VirtualBox --comment x --startvm 047b7e2f-c916-4a34-aac8-4c9ed7f50515 --no-startvm-errormsgbox","vobx-xp" ) end  ),
+   awful.key({modkey,       }, "x",  function () run_or_raise_by_uuid("VirtualBox --comment x --startvm ee914fca-d5a4-45aa-9fc4-a44c6c07abe9 --no-startvm-errormsgbox","vobx-xp" ) end  ),
 
    awful.key({ modkey }, "n",   awful.tag.viewnext),
    awful.key({ modkey }, "p",   awful.tag.viewprev),
