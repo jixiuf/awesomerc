@@ -49,8 +49,8 @@ globalkeys = awful.util.table.join(
    awful.key({modkey,       }, "m",  function () run_or_raise_by_uuid("myeclipse","myeclipse") end  ),
    awful.key({modkey,shiftkey}, "s",  function () run_or_raise_by_uuid("stardict","stardict") end  ),
    awful.key({modkey,       }, "v",  function () run_or_raise_by_uuid("VirtualBox","vbox-main") end  ),
-   awful.key({modkey,       }, "x",  function () run_or_raise_by_uuid("VirtualBox --comment x --startvm ee914fca-d5a4-45aa-9fc4-a44c6c07abe9 --no-startvm-errormsgbox","vobx-xp" ) end  ),
-
+   awful.key({modkey,       }, "x",  function ()  toggle_tag_with_shifty("VirtualBox --comment x --startvm 002cffe4-b4f2-472c-a028-e75729f0be21  --no-startvm-errormsgbox" ,"vbox",{class="VirtualBox"}) end),
+   -- awful.key({modkey,       }, "x",  function () run_or_raise_by_uuid("VirtualBox --comment x --startvm 002cffe4-b4f2-472c-a028-e75729f0be21  --no-startvm-errormsgbox","vobx-xp" ) end  ),
    awful.key({ modkey }, "n",   awful.tag.viewnext),
    awful.key({ modkey }, "p",   awful.tag.viewprev),
    awful.key({ ctrlkey,altkey    }, "Left",  awful.tag.viewprev),
