@@ -14,6 +14,7 @@ globalkeys = awful.util.table.join(
    --awful.key({  modkey}, "i", function () run_or_raise("sudo drcomclient", { class="Drcomclient", instance="drcomclient" }) end),
    awful.key({  modkey}, "a", function () toggle_tag_with_shifty("emacsclient -c " ,"emacs",{class="Emacs" ,instance="emacs"}) end),
    awful.key({  modkey}, "m", function () toggle_tag_with_shifty("" ,"mplayer",{class="MPlayer" ,instance="xv"}) end),
+   awful.key({  modkey}, ";", function () toggle_tag_with_shifty("" ,"android",{class="SDL_App" ,instance="SDL_App"}) end),
    awful.key({  modkey}, "q", function () show_matched_client({class="Emacs" ,instance="emacs"},"emacs"," emacsclient -c " ,nil) end),
    
    awful.key({ modkey            }, "c",function () toggle_conky() end),
@@ -50,7 +51,7 @@ globalkeys = awful.util.table.join(
    -- awful.key({modkey,       }, "m",  function () run_or_raise_by_uuid("myeclipse","myeclipse") end  ),
    awful.key({modkey,shiftkey}, "s",  function () run_or_raise_by_uuid("stardict","stardict") end  ),
    awful.key({modkey,       }, "v",  function () run_or_raise_by_uuid("VirtualBox","vbox-main") end  ),
-   awful.key({modkey,       }, "x",  function ()  toggle_tag_with_shifty("VirtualBox --comment x --startvm 002cffe4-b4f2-472c-a028-e75729f0be21  --no-startvm-errormsgbox" ,"vbox",{class="VirtualBox"}) end),
+   awful.key({modkey,       }, "x",  function ()  toggle_tag_with_shifty("VirtualBox --comment x --startvm e60a4461-3278-4e5b-b813-b402accaf7cf  --no-startvm-errormsgbox" ,"vbox",{class="VirtualBox"}) end),
    -- awful.key({modkey,       }, "x",  function () run_or_raise_by_uuid("VirtualBox --comment x --startvm 002cffe4-b4f2-472c-a028-e75729f0be21  --no-startvm-errormsgbox","vobx-xp" ) end  ),
    awful.key({ modkey }, "n",   awful.tag.viewnext),
    awful.key({ modkey }, "p",   awful.tag.viewprev),
