@@ -34,6 +34,7 @@ mymainmenu = awful.menu({ items = {
                              { " OpenOffice办公软件", OpenOfficeMenu,icondir .. "ooo-writer.png" },
                              { " 文 本 编辑器", TextEditorMenu ,icondir .. "edit.png"},
                              { "  终   端", TerminalMenu,icondir .. "terminal2.png" },
+                             { "recordMyDesktop录屏", "gtk-recordMyDesktop" ,icondir .. "recordMyDesktop.png"},
                              { "  PcManFM 文件管理器", "pcmanfm",icondir .."folder.png" },
                              { "  FireFox 浏览器 ", "firefox",icondir .."firefox-icon.png" },
                              { "  StarDict星际译王", "stardict",icondir .."stardict.png" },
