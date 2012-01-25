@@ -34,7 +34,7 @@ shifty.config.apps = {
    { match = { "Pcmanfm"}, tag = "f  s" },
    { match = { "MPlayer"}, tag = "mplayer" },
    -- { match = { "emacs"}, tag = "emacs"  },
-   { match = { "emacs"}, above=true,float=false,geometry={100,100,1000,700},tag="emacs"},
+   { match = { "emacs"}, above=false,float=false,geometry={100,100,1000,700},tag="emacs"},
    { match = { "OpenOffice.org*"}, tag = "office" },
    { match = { "Firefox"}, tag = "www",instrusive=true },
    { match = { "Dialog"},  tag = "www",intrusive=true,  float=true,geometry={240,200,nil,nil} ,above=true },
