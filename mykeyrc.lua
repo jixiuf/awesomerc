@@ -5,8 +5,8 @@ require("revelation")
 require("drop_only")
 require("run_or_raise_by_uuid")
 require("aweror")
-modkey = "Mod4" 
-altkey = "Mod1" 
+modkey = "Mod4"
+altkey = "Mod1"
 ctrlkey="Control"
 shiftkey="Shift"
 globalkeys = awful.util.table.join(
@@ -16,7 +16,7 @@ globalkeys = awful.util.table.join(
    awful.key({  modkey}, "m", function () toggle_tag_with_shifty("" ,"mplayer",{class="MPlayer" ,instance="xv"}) end),
    awful.key({  modkey}, ";", function () toggle_tag_with_shifty("" ,"android",{class="SDL_App" ,instance="SDL_App"}) end),
    awful.key({  modkey}, "q", function () show_matched_client({class="Emacs" ,instance="emacs"},"emacs"," emacsclient -c " ,nil) end),
-   
+
    awful.key({ modkey            }, "c",function () toggle_conky() end),
       --stardict 文本模式,要用到xsel sdcv
    awful.key({ modkey }, "z", function () mywibox[mouse.screen].visible = not mywibox[mouse.screen].visible end),
@@ -27,7 +27,7 @@ globalkeys = awful.util.table.join(
    --文本模式下的music 播放器
    awful.key({modkey }, "F6", function ()
                                 local offcount=awful.util.pread("pgrep -f mocp |wc -l")
-                                if  string.match(offcount, "0") then 
+                                if  string.match(offcount, "0") then
                                    awful.util.spawn_with_shell("mocp -S ")
                                 end
                                 drop_only("urxvtc -e mocp " ,true,"center","center",1024,700,false,1)
@@ -45,13 +45,13 @@ globalkeys = awful.util.table.join(
 --   awful.key({modkey,       }, "e",  function () awful.util.spawn("pcmanfm") end  ),
    awful.key({ modkey       }, "e", function () toggle_tag_with_shifty("pcmanfm" ,"f  s",{class="Pcmanfm"}) end),
    awful.key({modkey,       }, "g",  function () run_or_raise_by_uuid("gimp","gimp") end  ),
-   awful.key({modkey        }, "f", function () toggle_tag_with_shifty("firefox" ,"www",{class="Firefox" ,instance="Navigator"}) end),   
+   awful.key({modkey        }, "f", function () toggle_tag_with_shifty("firefox" ,"www",{class="Firefox" ,instance="Navigator"}) end),
 --   awful.key({ modkey       }, "f",  function () run_or_raise_by_uuid("firefox") end),
    awful.key({modkey,       }, "i",  function () run_or_raise_by_uuid("eclipse","eclipse-j2ee-helios") end  ),
    -- awful.key({modkey,       }, "m",  function () run_or_raise_by_uuid("myeclipse","myeclipse") end  ),
    awful.key({modkey,shiftkey}, "s",  function () run_or_raise_by_uuid("stardict","stardict") end  ),
    awful.key({modkey,       }, "v",  function () run_or_raise_by_uuid("VirtualBox","vbox-main") end  ),
-   awful.key({modkey,       }, "x",  function ()  toggle_tag_with_shifty("VirtualBox --comment x --startvm e60a4461-3278-4e5b-b813-b402accaf7cf  --no-startvm-errormsgbox" ,"vbox",{class="VirtualBox"}) end),
+   awful.key({modkey,       }, "x",  function ()  toggle_tag_with_shifty("VirtualBox --comment x --startvm db94764e-1ed5-4e8d-a9eb-209f64120e1b  --no-startvm-errormsgbox" ,"vbox",{class="VirtualBox"}) end),
    -- awful.key({modkey,       }, "x",  function () run_or_raise_by_uuid("VirtualBox --comment x --startvm 002cffe4-b4f2-472c-a028-e75729f0be21  --no-startvm-errormsgbox","vobx-xp" ) end  ),
    awful.key({ modkey }, "n",   awful.tag.viewnext),
    awful.key({ modkey }, "p",   awful.tag.viewprev),
@@ -77,13 +77,13 @@ globalkeys = awful.util.table.join(
    awful.key({ modkey,        }, "space", function () awful.layout.inc(layouts,  1) end),
    awful.key({ modkey,shiftkey }, "space", function () awful.layout.inc(layouts, -1) end),
    awful.key({ modkey         }, "r",     function () mypromptbox[mouse.screen]:run() end),
-      -- awful.key({      }, "XF86AudioLowerVolume", function ()	awful.util.spawn_with_shell("ossmix   codec3.misc.pcm1 -- -2")  end),
-   -- awful.key({      }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("ossmix   codec3.misc.pcm1 -- +2")  end),
+      -- awful.key({      }, "XF86AudioLowerVolume", function ()    awful.util.spawn_with_shell("ossmix   codec3.misc.pcm1 -- -2")  end),
+   -- awful.key({      }, "XF86AudioRaiseVolume", function ()    awful.util.spawn_with_shell("ossmix   codec3.misc.pcm1 -- +2")  end),
 
-   awful.key({shiftkey      }, "XF86AudioLowerVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set PCM 5%-")  end),
-   awful.key({shiftkey      }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set PCM 5%+")  end),
-   awful.key({              }, "XF86AudioRaiseVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set Master 5%+")  end),
-   awful.key({              }, "XF86AudioLowerVolume", function ()	awful.util.spawn_with_shell("amixer -q -c 0 set Master 5%-")  end),
+   awful.key({shiftkey      }, "XF86AudioLowerVolume", function ()    awful.util.spawn_with_shell("amixer -q -c 0 set PCM 5%-")  end),
+   awful.key({shiftkey      }, "XF86AudioRaiseVolume", function ()    awful.util.spawn_with_shell("amixer -q -c 0 set PCM 5%+")  end),
+   awful.key({              }, "XF86AudioRaiseVolume", function ()    awful.util.spawn_with_shell("amixer -q -c 0 set Master 5%+")  end),
+   awful.key({              }, "XF86AudioLowerVolume", function ()    awful.util.spawn_with_shell("amixer -q -c 0 set Master 5%-")  end),
    awful.key({      }, "XF86AudioStop", function ()awful.util.spawn("mocp -s ")  end),
    awful.key({      }, "XF86AudioPlay", function ()awful.util.spawn("mocp -G ")  end),
    awful.key({      }, "XF86AudioNext", function ()awful.util.spawn("mocp -f ")  end),
@@ -101,14 +101,14 @@ globalkeys = awful.util.table.join(
 
 clientkeys = awful.util.table.join(
    awful.key({ modkey,        }, "h",     function (c)
-                                             if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier then 
-                                                awful.client.incwfact(-0.1) 
-                                             end 
+                                             if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier then
+                                                awful.client.incwfact(-0.1)
+                                             end
                                              awful.tag.incmwfact( 0.05)   end),
-   awful.key({ modkey,        }, "l",     function (c) 
-                                             if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier then 
+   awful.key({ modkey,        }, "l",     function (c)
+                                             if awful.layout.get(c.screen) ~= awful.layout.suit.magnifier then
                                                 awful.client.incwfact(0.1)
-                                             end 
+                                             end
                                              awful.tag.incmwfact( -0.05)   end),
  --send the client to next/previous tag
    awful.key({ modkey,altkey    }, "Left",  function (c)  send2prev_tag(c) end),
@@ -117,20 +117,20 @@ clientkeys = awful.util.table.join(
    awful.key({ modkey,shiftkey   }, "Left",  function (c)  send2prev_tag(c) awful.tag:viewprev(mouse.screen) end),
    awful.key({ modkey,shiftkey   }, "Right", function (c)  send2next_tag(c) awful.tag:viewnext(mouse.screen)  end),
 
-   -- awful.key({ modkey		     }, "Next",  function (c) awful.client.moveresize( 20,  20, -40, -40) end),
-   -- awful.key({ modkey		     }, "Prior", function (c) awful.client.moveresize(-20, -20,  40,  40) end),
-   -- awful.key({ modkey		     }, "Down",  function (c) awful.client.moveresize(  0,  20,   0,   0) end),
-   -- awful.key({ modkey		     }, "Up",    function (c) awful.client.moveresize(  0, -20,   0,   0) end),
-   -- awful.key({ modkey		     }, "Left",  function (c) awful.client.moveresize(-20,   0,   0,   0) end),
-   -- awful.key({ modkey 		     }, "Right", function (c) awful.client.moveresize( 20,   0,   0,   0) end),
+   -- awful.key({ modkey             }, "Next",  function (c) awful.client.moveresize( 20,  20, -40, -40) end),
+   -- awful.key({ modkey             }, "Prior", function (c) awful.client.moveresize(-20, -20,  40,  40) end),
+   -- awful.key({ modkey             }, "Down",  function (c) awful.client.moveresize(  0,  20,   0,   0) end),
+   -- awful.key({ modkey             }, "Up",    function (c) awful.client.moveresize(  0, -20,   0,   0) end),
+   -- awful.key({ modkey             }, "Left",  function (c) awful.client.moveresize(-20,   0,   0,   0) end),
+   -- awful.key({ modkey              }, "Right", function (c) awful.client.moveresize( 20,   0,   0,   0) end),
    awful.key({ modkey,          },  "Escape",    function (c) c:kill()                         end),
    awful.key({ modkey, altkey}, "space",  awful.client.floating.toggle                     ),
-   awful.key({ modkey,          }, "Return", function (c) 
+   awful.key({ modkey,          }, "Return", function (c)
                                                 local master=awful.client.getmaster()
                                                 if    master ~=c    then
                                                    c:swap(master)
-                                                else 
-                                                   awful.client.swap.byidx(  1) 
+                                                else
+                                                   awful.client.swap.byidx(  1)
                                                    client.focus=awful.client.getmaster()
                                                 end
                                              end),
@@ -190,6 +190,5 @@ function toggle_conky()
    else
       shifty.add({ name="conky" })
       awful.util.spawn("conky -q ")
-   end 
+   end
 end
-
