@@ -109,9 +109,9 @@ function drop_only(prog,hideOtherClients, vert, horiz, width, height, sticky, sc
                   if sticky then c.sticky = true end
                   if c.titlebar then awful.titlebar.remove(c) end
 
+                  capi.client.remove_signal("manage", spawnw)
                   c:raise()
                   capi.client.focus = c
-                  capi.client.remove_signal("manage", spawnw)
                end
       
       -- Add manage signal and spawn the program
