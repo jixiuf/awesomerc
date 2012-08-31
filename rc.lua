@@ -29,6 +29,8 @@ shifty.config.tags = {
 }
 
 shifty.config.apps = {
+   
+   { match = {"Acroread" }, tag="pdf"},
    { match = {"Drcomclient" }, slave=true ,float=true, above=true,geometry={500,100,300,200}},
    { match = {"toggled_urxvt" },tag="urxvtt", slave=true },
    { match = { "Pcmanfm"}, tag = "f  s" },
@@ -53,7 +55,7 @@ shifty.config.apps = {
    { match = {"MyEclipse Enterprise Workbench" }, tag ="java" },
    { match = { "" }, 
      buttons = awful.util.table.join(
-        awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
+        -- awful.button({ }, 1, function (c) client.focus = c; c:raise() end),
         awful.button({ modkey }, 1, function (c) awful.mouse.client.move() end),
         awful.button({ modkey }, 3, awful.mouse.client.resize ) 
      )
