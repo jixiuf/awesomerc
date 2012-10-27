@@ -26,10 +26,13 @@ shifty.config.tags = {
    ["urxvtt"] = { rel_index = 1,       },
    ["emacs"] = { rel_index = 1     },
    ["tail"] = {   max_clients=0,persist=true ,init=true,solitary=true,exclusive=true},
+   ["Erlang"] = {   layout =awful.layout.suit.max}
 }
 
 shifty.config.apps = {
-   
+   { match = {"Erlang" }, tag="Erlang",layout =awful.layout.suit.max},
+   { match = {"TopLevel" }, tag="Erlang",layout =awful.layout.suit.max},
+   -- { match = {"Monitor" }, tag="Erlang"},
    { match = {"Acroread" }, tag="pdf"},
    { match = {"Drcomclient" }, slave=true ,float=true, above=true,geometry={500,100,300,200}},
    { match = {"toggled_urxvt" },tag="urxvtt", slave=true },
@@ -38,8 +41,9 @@ shifty.config.apps = {
    -- { match = { "emacs"}, tag = "emacs"  },
    { match = { "emacs"}, above=false,float=false,geometry={100,100,1000,700},tag="emacs"},
    { match = { "OpenOffice.org*"}, tag = "office" },
-   { match = { "Firefox"}, tag = "www",instrusive=true },
-   { match = { "Dialog"},  tag = "www",intrusive=true,  float=true,geometry={240,200,nil,nil} ,above=true },
+   { match = { "Firefox"}, tag = "www",instrusive=true }, 
+   { match = { "brower"}, tag = "www",instrusive=true },
+  { match = { "Dialog"},  tag = "www",intrusive=true,  float=true,geometry={240,200,nil,nil} ,above=true },
    { match = { "^下载$" },  tag ="www",above=true, titlebar=true,intrusive=true, geometry={800,200,400,300} ,float=true },
    { match = { "打开文件"}, tag = "www",intrusive=true,  float=true,geometry={240,200,nil,nil} ,above=true },
    { match = { "另存为"},   tag = "www",intrusive=true,  float=true,geometry={240,200,nil,nil} ,above=true },
