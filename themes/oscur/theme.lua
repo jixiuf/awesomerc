@@ -106,6 +106,9 @@ themes.awesome_icon = confdir.. "/themes/oscur/awesome16.png"
 --{{{ 壁纸，一个目录的图片作为壁纸
 x = 0
 -- setup the timer
+themes.wallpaper_cmd = { "awsetbg " .. confdir .. "/themes/oscur/image/default.jpg" }
+-- themes.wallpaper_cmd = { "awsetbg /usr/share/awesome/themes/default/background.png" }
+
 mytimer = timer { timeout = x }
 mytimer:add_signal("timeout", function()
                                    -- tell awsetbg to randomly choose a wallpaper from your wallpaper directory
