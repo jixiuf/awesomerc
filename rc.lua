@@ -16,7 +16,7 @@ modkey = "Mod4"
 altkey = "Mod1" 
 ctrlkey="Control"
 shiftkey="Shift"
-awful.util.spawn_with_shell("pkill -9 fcitx ; fcitx") 
+awful.util.spawn_with_shell("pkill -9 fcitx ; fcitx -d >/dev/null 2>&1") 
 shifty.config.tags = {
    ["www"] = { layout =awful.layout.suit.tile,position=1 },
    ["java"] = { exclusive = true,         position=3 },
