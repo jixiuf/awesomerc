@@ -2,6 +2,8 @@
 --Useage : require("volumerc")
 ---        add  volicon,textVolume,to your wibox list
 --
+confdir = awful.util.getdir("config")
+
 volicon	= widget({ type = "imagebox", name = "volicon" })
 vicious.register(volicon, vicious.widgets.volume, 
       function (widget, args)

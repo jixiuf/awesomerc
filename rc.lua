@@ -7,6 +7,8 @@ require("naughty")
 require("vicious")
 require("beautiful")
 beautiful.init(awful.util.getdir("config") .. "/themes/oscur/theme.lua")
+-- beautiful.init("/usr/share/awesome/themes/default/theme.lua")
+
 --动态tags
 require("shifty")
 require("mywiboxrc")
